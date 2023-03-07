@@ -45,8 +45,12 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 
+#### `yarn create react-app tom-ui-demo --template typescript`
 
+#### `yarn add @mui/material @emotion/react @emotion/styled`
 
-## `yarn create react-app tom-ui-demo --template typescript`
-## `yarn add @mui/material @mui/styled-engine-sc styled-components`
+#### `yarn add @mui/material @mui/styled-engine-sc styled-components`
 
+#### `yarn add @mui/icons-material`
+
+#### `yarn add @types/react-router-dom`
