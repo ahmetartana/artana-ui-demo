@@ -1,8 +1,8 @@
 import AddIcon from "@mui/icons-material/Add";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import ListIcon from "@mui/icons-material/List";
 import MenuIcon from "@mui/icons-material/Menu";
-import RemoveIcon from "@mui/icons-material/Remove";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -19,7 +19,7 @@ import { styled, useTheme } from "@mui/material/styles";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -127,29 +127,33 @@ export default function DashboardLayout() {
         </DrawerHeader>
         <Divider />
         <List>
-          {["Ürün Ekle", "Ürün Listele"].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <AddIcon /> : <RemoveIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
+          <ListItemButton component={Link} to="/add-item">
+            <ListItemButton>
+              <ListItemIcon>
+                <AddIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Ürün Ekle"} />
+            </ListItemButton>
+          </ListItemButton>
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <ListIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Ürün Listele"} />
+            </ListItemButton>
+          </ListItem>
         </List>
         <Divider />
         <List>
-          {["Sepet"].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  <ShoppingBasketIcon />
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <ShoppingBasketIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Sepet"} />
+            </ListItemButton>
+          </ListItem>
         </List>
       </Drawer>
       <Main open={open}>

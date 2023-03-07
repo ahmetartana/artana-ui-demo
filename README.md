@@ -54,3 +54,7 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 #### `yarn add @mui/icons-material`
 
 #### `yarn add @types/react-router-dom`
+
+#### `yarn add react-hook-form`
+
+#### `yarn add yup @hookform/resolvers`

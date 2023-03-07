@@ -1,7 +1,6 @@
 import { useRoutes } from "react-router-dom";
 import { DashboardLayout } from "./packages";
-
-import { Page404 } from "./pages";
+import { AddItem, Page404 } from "./pages";
 
 export const RouteList: React.FC = () => {
   return useRoutes([
@@ -15,6 +14,10 @@ export const RouteList: React.FC = () => {
         {
           path: "/",
           element: <>Home</>,
+        },
+        {
+          path: "/add-item",
+          element: <AddItem />,
         },
       ],
     },
