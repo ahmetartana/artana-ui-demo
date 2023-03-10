@@ -10,7 +10,7 @@ export const MButton = (props: IMButton): JSX.Element => {
     type = "submit",
     onClick,
     color,
-    variant = "text",
+    variant = "outlined",
     disabled,
     ...otherProps
   } = props;

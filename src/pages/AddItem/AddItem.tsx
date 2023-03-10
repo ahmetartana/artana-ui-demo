@@ -1,68 +1,65 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { CardContent } from "@mui/material";
-import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
 import { useForm } from "react-hook-form";
 import { MButton, MFormCheckbox } from "../../packages/component";
+import { MBox } from "../../packages/component/MBox";
+import { MCard } from "../../packages/component/MCard";
 import { MFormInput } from "../../packages/component/MInput";
+import { useItemState, useSuspense } from "../../packages/context";
+import { IItem } from "../../packages/types/pages";
 import { FORM_VALIDATION } from "./validations";
 
-type IItem = {
-  productName: string;
-  productCount: number;
-  productAmount: number;
-  status: boolean;
-};
-
 export const AddItem = () => {
+  const { showMessage } = useSuspense();
+  const { add } = useItemState();
   const { control, handleSubmit, reset } = useForm<IItem>({
     defaultValues: {},
     resolver: yupResolver(FORM_VALIDATION),
   });
 
-  const onSubmit = (values: IItem) => {};
+  const onSubmit = (values: IItem) => {
+    add(values);
+    showMessage("success", "Added item successfully");
+    reset();
+  };
 
   return (
-    <Box
+    <MBox
       component="form"
       id={"table-definition"}
       onSubmit={handleSubmit(onSubmit)}
     >
-      <Card title="Ürün Ekle">
-        <CardContent>
-          <Grid container spacing={1}>
-            <Grid item xs={12} md={6}>
+      <MCard title="Add Item">
+        <Grid container>
+          <Grid container item xs={12} md={6}>
+            <Grid item xs={12}>
               <MFormInput
-                label="Ürün Adı"
+                label="Name"
                 id={"productName"}
                 name="productName"
                 control={control}
               />
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12}>
               <MFormInput
-                label="Ürün Sayısı"
+                label="Count"
                 name="productCount"
                 type={"number"}
                 control={control}
               />
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12}>
               <MFormInput
-                label="Ürün Fiyatı"
+                label="Amount"
                 name="productAmount"
                 type={"number"}
                 control={control}
               />
             </Grid>
-            <Grid item xs={12} md={6}>
-              <MFormCheckbox label="Durum" name="state" control={control} />
+            <Grid item xs={12}>
+              <MFormCheckbox label="State" name="state" control={control} />
             </Grid>
-            <Grid item xs={12} md={6}>
-              <MButton onClick={handleSubmit(onSubmit)}>Kaydet</MButton>
-            </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={6}>
               <MButton
                 type="button"
                 onClick={() => {
@@ -70,12 +67,15 @@ export const AddItem = () => {
                 }}
                 color="error"
               >
-                Temizle
+                Clear
               </MButton>
             </Grid>
+            <Grid item xs={6}>
+              <MButton onClick={handleSubmit(onSubmit)}>Save</MButton>
+            </Grid>
           </Grid>
-        </CardContent>
-      </Card>
-    </Box>
+        </Grid>
+      </MCard>
+    </MBox>
   );
 };

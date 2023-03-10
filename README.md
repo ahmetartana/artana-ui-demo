@@ -49,7 +49,9 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 #### `yarn add @mui/material @emotion/react @emotion/styled`
 
-#### `yarn add @mui/material @mui/styled-engine-sc styled-components`
+#### `yarn add @mui/material @mui/styled-engine-sc styled-components `
+
+#### `yarn add @mui/x-data-grid`
 
 #### `yarn add @mui/icons-material`
 

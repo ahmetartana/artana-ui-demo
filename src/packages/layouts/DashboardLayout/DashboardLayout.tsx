@@ -4,6 +4,7 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ListIcon from "@mui/icons-material/List";
 import MenuIcon from "@mui/icons-material/Menu";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
+import { Badge } from "@mui/material";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -11,7 +12,6 @@ import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
 import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
@@ -20,6 +20,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
 import { Link, Outlet } from "react-router-dom";
+import { useItemState } from "../../context";
 
 const drawerWidth = 240;
 
@@ -73,6 +74,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 }));
 
 export default function DashboardLayout() {
+  const { basketList } = useItemState();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -99,8 +101,21 @@ export default function DashboardLayout() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            SEPET DEMO
+            DEMO
           </Typography>
+          <Box sx={{ flexGrow: 1 }} />
+          <Box sx={{ display: { xs: "none", md: "flex" } }}>
+            <IconButton
+              size="large"
+              color="inherit"
+              component={Link}
+              to="/item-list"
+            >
+              <Badge badgeContent={basketList.length} color="success">
+                <ShoppingBasketIcon />
+              </Badge>
+            </IconButton>
+          </Box>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -128,32 +143,26 @@ export default function DashboardLayout() {
         <Divider />
         <List>
           <ListItemButton component={Link} to="/add-item">
-            <ListItemButton>
-              <ListItemIcon>
-                <AddIcon />
-              </ListItemIcon>
-              <ListItemText primary={"Ürün Ekle"} />
-            </ListItemButton>
+            <ListItemIcon>
+              <AddIcon />
+            </ListItemIcon>
+            <ListItemText primary={"Add Item"} />
           </ListItemButton>
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <ListIcon />
-              </ListItemIcon>
-              <ListItemText primary={"Ürün Listele"} />
-            </ListItemButton>
-          </ListItem>
+          <ListItemButton component={Link} to="/item-list">
+            <ListItemIcon>
+              <ListIcon />
+            </ListItemIcon>
+            <ListItemText primary={"Item List"} />
+          </ListItemButton>
         </List>
         <Divider />
         <List>
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <ShoppingBasketIcon />
-              </ListItemIcon>
-              <ListItemText primary={"Sepet"} />
-            </ListItemButton>
-          </ListItem>
+          <ListItemButton component={Link} to="/basket">
+            <ListItemIcon>
+              <ShoppingBasketIcon />
+            </ListItemIcon>
+            <ListItemText primary={"Basket"} />
+          </ListItemButton>
         </List>
       </Drawer>
       <Main open={open}>

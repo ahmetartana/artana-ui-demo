@@ -1,3 +1,2 @@
-export * from "./IMButton";
-export * from "./IMCheckbox";
-export * from "./IMInput";
+export * from "./component";
+export * from "./pages";
