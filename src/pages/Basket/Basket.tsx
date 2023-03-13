@@ -29,10 +29,10 @@ const columns: GridColDef[] = [
   },
 ];
 
-export const ItemList = () => {
+export const Basket = () => {
   const { showMessage } = useSuspense();
-  const { get, remove, addBasket } = useItemState();
-  const itemList = get();
+  const { remove, removeBasket, basketList } = useItemState();
+
   const [idList, setIdList] = useState<number[]>([]);
 
   return (
@@ -45,8 +45,8 @@ export const ItemList = () => {
               disabled={idList.length <= 0}
               color="error"
               onClick={() => {
-                remove(idList);
-                showMessage("error", "Deleted item successfully");
+                removeBasket(idList);
+                showMessage("error", "Deleted item from basket successfully");
                 setIdList([]);
               }}
             >
@@ -58,7 +58,7 @@ export const ItemList = () => {
         <DataGrid
           autoHeight
           columns={columns}
-          rows={itemList}
+          rows={basketList}
           onRowSelectionModelChange={(selected) => {
             const selectedIdList: number[] = selected.map((m) => Number(m));
             setIdList(selectedIdList);

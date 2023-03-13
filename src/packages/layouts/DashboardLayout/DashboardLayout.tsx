@@ -17,7 +17,6 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import { styled, useTheme } from "@mui/material/styles";
 import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
 import * as React from "react";
 import { Link, Outlet } from "react-router-dom";
 import { useItemState } from "../../context";
@@ -100,9 +99,10 @@ export default function DashboardLayout() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            DEMO
-          </Typography>
+          <ListItemButton component={Link} to="/">
+            <ListItemText primary={"Demo"} />
+          </ListItemButton>
+
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <IconButton

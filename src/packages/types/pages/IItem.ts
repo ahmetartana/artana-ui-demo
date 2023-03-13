@@ -1,7 +1,8 @@
 export type IItem = {
   id?: number;
-  productName: string;
-  productCount: number;
-  productAmount?: number;
+  title: string;
+  description: string;
+  count: number;
+  amount?: string;
   status: boolean;
 };

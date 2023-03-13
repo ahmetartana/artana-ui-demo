@@ -6,6 +6,7 @@ export interface IItemState {
   basketList: IItem[];
   add: (value: IItem) => void;
   addBasket: (id: number[]) => void;
+  removeBasket: (id: number[]) => void;
   remove: (id: number[]) => void;
   get: () => IItem[];
   reset: () => void;
@@ -16,13 +17,11 @@ export const useItemState = create<IItemState>()((set, get) => ({
   basketList: [],
   add: (value: IItem) =>
     set((prewState) => {
-      let updateItem = prewState.itemList.find(
-        (m) => m.productName === value.productName
-      );
+      let updateItem = prewState.itemList.find((m) => m.title === value.title);
       if (updateItem) {
-        updateItem.productName = value.productName;
-        updateItem.productAmount = value.productAmount;
-        updateItem.productCount = value.productCount;
+        updateItem.title = value.title;
+        updateItem.amount = value.amount;
+        updateItem.count = value.count;
         updateItem.status = value.status;
       } else {
         const newItem = {
@@ -53,8 +52,18 @@ export const useItemState = create<IItemState>()((set, get) => ({
 
       return { basketList: filterList };
     }),
+  removeBasket: (idList: number[]) =>
+    set((prewState) => {
+      const basketList: IItem[] = prewState.basketList;
+      const filterList = [
+        ...basketList.filter((m) => !idList.includes(m.id || 0)),
+      ];
+
+      return { basketList: filterList };
+    }),
   remove: (idList: number[]) =>
     set((prewState) => {
+      prewState.removeBasket(idList);
       const itemList: IItem[] = prewState.itemList;
       const filterList = [
         ...itemList.filter((m) => !idList.includes(m.id || 0)),
@@ -63,5 +72,5 @@ export const useItemState = create<IItemState>()((set, get) => ({
       return { itemList: filterList };
     }),
   get: () => get().itemList,
-  reset: () => set(() => ({ itemList: [] })),
+  reset: () => set(() => ({ itemList: [], basketList: [] })),
 }));

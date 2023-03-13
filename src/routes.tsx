@@ -1,6 +1,6 @@
 import { useRoutes } from "react-router-dom";
 import { DashboardLayout } from "./packages";
-import { AddItem, ItemList, Page404 } from "./pages";
+import { AddItem, Basket, Home, ItemList, Page404 } from "./pages";
 
 export const RouteList: React.FC = () => {
   return useRoutes([
@@ -13,7 +13,7 @@ export const RouteList: React.FC = () => {
       children: [
         {
           path: "/",
-          element: <>Home</>,
+          element: <Home />,
         },
         {
           path: "/add-item",
@@ -22,6 +22,10 @@ export const RouteList: React.FC = () => {
         {
           path: "/item-list",
           element: <ItemList />,
+        },
+        {
+          path: "/basket",
+          element: <Basket />,
         },
       ],
     },
