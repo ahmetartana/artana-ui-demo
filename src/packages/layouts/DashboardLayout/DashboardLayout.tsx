@@ -109,7 +109,7 @@ export default function DashboardLayout() {
               size="large"
               color="inherit"
               component={Link}
-              to="/item-list"
+              to="/basket"
             >
               <Badge badgeContent={basketList.length} color="success">
                 <ShoppingBasketIcon />

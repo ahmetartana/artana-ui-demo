@@ -34,7 +34,7 @@ export const AddItem = () => {
           <Grid container item xs={12} md={6}>
             <Grid item xs={12}>
               <MFormInput
-                label="Name"
+                label="Title"
                 id={"title"}
                 name="title"
                 control={control}
@@ -42,16 +42,27 @@ export const AddItem = () => {
             </Grid>
             <Grid item xs={12}>
               <MFormInput
-                label="Count"
-                name="count"
+                label="Description"
+                id={"description"}
+                name="description"
+                rows={3}
+                maxRows={4}
+                multiline
+                control={control}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <MFormInput
+                label="Price"
+                name="price"
                 type={"number"}
                 control={control}
               />
             </Grid>
             <Grid item xs={12}>
               <MFormInput
-                label="Amount"
-                name="amount"
+                label="Count"
+                name="count"
                 type={"number"}
                 control={control}
               />

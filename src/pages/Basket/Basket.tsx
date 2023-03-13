@@ -1,6 +1,6 @@
 import RemoveCircleOutlineTwoToneIcon from "@mui/icons-material/RemoveCircleOutlineTwoTone";
 import IconButton from "@mui/material/IconButton";
-import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { useState } from "react";
 import { MBox } from "../../packages/component/MBox";
 import { MCard } from "../../packages/component/MCard";
@@ -8,7 +8,13 @@ import { useItemState, useSuspense } from "../../packages/context";
 
 const columns: GridColDef[] = [
   { field: "id", headerName: "ID", width: 70 },
-  { field: "title", headerName: "Item Name", flex: 1 },
+  { field: "title", headerName: "Title", flex: 1 },
+  { field: "description", headerName: "Description", flex: 2 },
+  {
+    field: "price",
+    headerName: "Price",
+    flex: 1,
+  },
   {
     field: "count",
     headerName: "Count",
@@ -20,18 +26,11 @@ const columns: GridColDef[] = [
     headerName: "Amount",
     flex: 1,
   },
-  {
-    field: "status",
-    headerName: "Status",
-    flex: 1,
-    valueGetter: (params: GridValueGetterParams) =>
-      `${params.row.status ? "Active" : "Passive"}`,
-  },
 ];
 
 export const Basket = () => {
   const { showMessage } = useSuspense();
-  const { remove, removeBasket, basketList } = useItemState();
+  const { removeBasket, basketList } = useItemState();
 
   const [idList, setIdList] = useState<number[]>([]);
 

@@ -3,6 +3,7 @@ export type IItem = {
   title: string;
   description: string;
   count: number;
+  price?: string;
   amount?: string;
   status: boolean;
 };

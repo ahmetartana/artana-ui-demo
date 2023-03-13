@@ -19,7 +19,7 @@ export const Home = () => {
           title: faker.commerce.product(),
           description: faker.commerce.productDescription(),
           count: Math.floor(Math.random() * 100),
-          amount: faker.commerce.price(),
+          price: faker.commerce.price(),
           status: faker.datatype.boolean(),
         });
       });
@@ -29,7 +29,7 @@ export const Home = () => {
 
   const handleAddToCart = (clickedItem: IItem) => {
     if (clickedItem.id) {
-      addBasket([clickedItem.id]);
+      addBasket(clickedItem.id);
       showMessage("info", "Added item successfully");
     }
   };

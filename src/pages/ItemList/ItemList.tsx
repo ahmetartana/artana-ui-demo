@@ -8,16 +8,17 @@ import { useItemState, useSuspense } from "../../packages/context";
 
 const columns: GridColDef[] = [
   { field: "id", headerName: "ID", width: 70 },
-  { field: "title", headerName: "Item Name", flex: 1 },
+  { field: "title", headerName: "Title", flex: 1 },
+  { field: "description", headerName: "Description", flex: 2 },
+  {
+    field: "price",
+    headerName: "Price",
+    flex: 1,
+  },
   {
     field: "count",
     headerName: "Count",
     type: "number",
-    flex: 1,
-  },
-  {
-    field: "amount",
-    headerName: "Amount",
     flex: 1,
   },
   {
@@ -31,7 +32,7 @@ const columns: GridColDef[] = [
 
 export const ItemList = () => {
   const { showMessage } = useSuspense();
-  const { get, remove, addBasket } = useItemState();
+  const { get, remove } = useItemState();
   const itemList = get();
   const [idList, setIdList] = useState<number[]>([]);
 
