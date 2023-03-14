@@ -38,7 +38,7 @@ export const Basket = () => {
     <MBox>
       <MCard
         cardHeaderProps={{
-          title: "Item List",
+          title: "Basket",
           action: (
             <IconButton
               disabled={idList.length <= 0}
